@@ -1,3 +1,0 @@
-analyzer:
-    enable-experiment:
-        - extension-methods #启用[扩展方法]支持
