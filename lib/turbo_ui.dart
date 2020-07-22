@@ -7,3 +7,4 @@ export 'widgets/messageListTile.dart';
 export 'widgets/turboImage.dart';
 export 'widgets/turboShandow.dart';
 export 'widgets/turboBlur.dart';
+export 'widgets/turboSlideItem.dart';
