@@ -121,17 +121,17 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildListItem(BuildContext context, ContactInfo model) {
     if (model == null) return null;
     return TurboSlideItem(
-        indexInList:0,
-        actions:<SlideAction>[
+        indexInList: 0,
+        actions: <SlideAction>[
           SlideAction(
               actionWidget: Container(
                 child: Icon(Icons.adjust),
                 color: Colors.blueGrey,
               ),
               tapCallback: (_) {
-              _.close();
-              print('debug -> click at adjust ${_.indexInList}');
-            }),
+                _.close();
+                print('debug -> click at adjust ${_.indexInList}');
+              }),
         ],
         child: MessageListTile(
           leading: Center(
@@ -142,14 +142,13 @@ class _MyHomePageState extends State<MyHomePage> {
             borderRadius: BorderRadius.circular(20),
           )),
           leadingWidth: 60.0,
-      //paddingLeft: 50.0,
+          //paddingLeft: 50.0,
           nickName: Text(model.name),
           messageDigest: Text('消息'),
           transmissionTime: DateTime.parse('2020-01-12'),
           splashColor: Colors.red[100],
           highlightColor: Colors.transparent, // Colors.red[200],
-        )
-    );
+        ));
   }
 
   /// 构建自定义风格的 提示 部件
@@ -177,17 +176,14 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context) {
           return Center(
               child: TurboShadow(
-            child: TurboBlur(
-              child: TurboImage(
-                borderRadius: BorderRadius.circular(25),
-                splashColor: Colors.blue[200],
-                onPressed: () {},
-                width: 50.0,
-                height: 50.0,
-                image: NetworkImage(
-                    'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqE2ib7iaGACNGgtqdFB0sAR33YWzlQO89xXoq0zichJxst9j7Rp8TtRKzgtdLtd1EotzXYibp7tagruQ/132'),
-              ),
+            child: TurboImage(
               borderRadius: BorderRadius.circular(25),
+              splashColor: Colors.blue[200],
+              onPressed: () {},
+              width: 40.0,
+              height: 40.0,
+              image: NetworkImage(
+                  'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqE2ib7iaGACNGgtqdFB0sAR33YWzlQO89xXoq0zichJxst9j7Rp8TtRKzgtdLtd1EotzXYibp7tagruQ/132'),
             ),
             shandowShape: BoxShape.circle,
             blurRadius: 1.0,
@@ -199,7 +195,7 @@ class _MyHomePageState extends State<MyHomePage> {
         });
     return TurboListView(
       data: _contacts,
-      sortDataByGroupTag: false,
+      sortDataByGroupTag: true,
       header: head,
       controller: _scrollController,
       showGroupTag: true,
@@ -234,7 +230,7 @@ class _MyHomePageState extends State<MyHomePage> {
               slideWidth: 40,
               actionOpenCloseThreshold: 0.3,
               backgroundColor: Colors.white),
-          child:_buildListView(),
+          child: _buildListView(),
         ),
         floatingActionButton: TurboShadow(
           child: FloatingActionButton(child: Icon(Icons.add)),
