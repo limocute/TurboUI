@@ -1,16 +1,17 @@
 name: turbo_ui
 description: A Flutter UI package.
-version: 0.0.2
+version: 0.0.3
 author:
 homepage: https://github.com/limocute/TurboUI
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.17.0 <2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^4.3.1
+  provider: ^4.3.2
 
 dev_dependencies:
   flutter_test:
