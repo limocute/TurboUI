@@ -142,7 +142,7 @@ class TurboListViewUtil{
       groupTagOffset += header.height;
     }
 
-    String tempTag;
+    String tempTag = '';
     for (int i = 0, length = list.length; i < length; i++) {
       String tag = list[i].getGroupTag();
       if(i!=0){
