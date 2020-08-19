@@ -112,7 +112,7 @@ class TurboListViewUtil{
   static List<String> getIndexBarTags(List<IGroupTag> list) {
     List<String> indexBarData = new List();
     if (list != null && list.isNotEmpty) {
-      String tempTag;
+      String tempTag = '';
       for (int i = 0, length = list.length; i < length; i++) {
         String tag = list[i].getGroupTag();
         if (tag.length > 2) tag = tag.substring(0, 2);
