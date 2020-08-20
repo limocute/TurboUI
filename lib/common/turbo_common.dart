@@ -67,12 +67,16 @@ abstract class IGroupTag {
   String groupTag;
   ///Whether this item displays Hang Tag(此项目是否显示悬停标签)
   bool showGroupTag;
+
   /// get Hang Tag(获取悬停标签值)
   String getGroupTag() => groupTag; 
 }
 
 /// _HeaderWidget Model.(列表头部widget的model)
 class HeaderWidgetTag extends IGroupTag {
+  HeaderWidgetTag(){
+    super.groupTag='↑';
+  }
   @override
   bool get showGroupTag => false;
 }

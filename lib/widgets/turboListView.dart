@@ -369,7 +369,6 @@ class _TurboListViewState extends State<TurboListView> {
   /// 构建分组悬浮标签
   Widget _buildHangTagItem(String tag) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 15.0),
         height: widget.hangTagWidgetHeight,
         width: double.infinity,
         alignment: Alignment.centerLeft,
