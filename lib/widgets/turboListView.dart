@@ -11,7 +11,7 @@ class TurboListView extends StatefulWidget {
   ///
   /// `data` with IHangTag Data(extends或with 类IHangTag的列表数据model)
   ///
-  /// `sortDataByGroupTag`  是否根据groupTag对data排序(默认 true,如果此值为false，则传入的data需要事先排序，否则indexbar索引未知会不对)
+  /// `sortDataByGroupTag`  是否根据groupTag对data排序(默认 true,如果此值为false，则传入的data需要事先排序，否则indexbar索引位置会不对)
   ///
   /// `scrollDirection` scroll Direction(默认：垂直,滚动方向)
   ///
@@ -342,7 +342,7 @@ class _TurboListViewState extends State<TurboListView> {
     var childrenWidget = <Widget>[];
 
     //  有悬浮标签的
-    if (widget.showHangTag && widget.hangTagItemBuilder != null) {
+    if (widget.showHangTag) {
       childrenWidget.add(_buildSuspensionFrameListView());
     } else {
       // 没有悬浮标签的
@@ -366,17 +366,41 @@ class _TurboListViewState extends State<TurboListView> {
     return Stack(children: childrenWidget);
   }
 
+  /// 构建分组悬浮标签
+  Widget _buildHangTagItem(String tag) {
+    return SizedBox(
+            height: widget.hangTagWidgetHeight,
+            child: DefaultGroupTagWidget(
+                    curTag: tag,
+                    maxHeight: widget.hangTagWidgetHeight)
+    );
+  }
+
   /// 构建带悬浮框架的ListView
   Widget _buildSuspensionFrameListView() {
-    return SuspensionFrame(
-      child: _buildListView(),
-      controller: _scrollController,
-      indexBarHintChangeNotifier: widget._indexBarHintChangeNotifier,
-      indexBarSelectNotifier: widget._indexBarSelectNotifier,
-      hangTagBuilder: widget.hangTagItemBuilder,
-      hangTagWidgetHeight: widget.hangTagWidgetHeight,
-      groupTagLoaclMap: _groupTagLoaclMap,
-    );
+    if( widget.hangTagItemBuilder!= null) {
+      return SuspensionFrame(
+        child: _buildListView(),
+        controller: _scrollController,
+        indexBarHintChangeNotifier: widget._indexBarHintChangeNotifier,
+        indexBarSelectNotifier: widget._indexBarSelectNotifier,
+        hangTagBuilder: widget.hangTagItemBuilder,
+        hangTagWidgetHeight: widget.hangTagWidgetHeight,
+        groupTagLoaclMap: _groupTagLoaclMap,
+      );
+    }
+    else
+    {
+      return SuspensionFrame(
+        child: _buildListView(),
+        controller: _scrollController,
+        indexBarHintChangeNotifier: widget._indexBarHintChangeNotifier,
+        indexBarSelectNotifier: widget._indexBarSelectNotifier,
+        hangTagBuilder: (BuildContext context, String tag)=> _buildHangTagItem(tag),
+        hangTagWidgetHeight: widget.hangTagWidgetHeight,
+        groupTagLoaclMap: _groupTagLoaclMap,
+      );
+    }
   }
 
   /// Build ListView 构建lietview
